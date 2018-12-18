@@ -7,6 +7,8 @@ static isPullRequestFromFork(env) {
 //def isPullRequestFromFork(jenkins.env)
 
  def runPipeline() {
+     jenkins.node ('node')
+     {
      
      jenkins.stage("Cleanup") {
             mvn clean install
@@ -19,5 +21,5 @@ static isPullRequestFromFork(env) {
 if (isPullRequestFromFork) {
 jenkins.echo "True"
 }
-   
+     }
  }
