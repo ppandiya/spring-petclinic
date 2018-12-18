@@ -8,8 +8,9 @@ static isPullRequestFromFork(env) {
 
  def runPipeline() {
      
-     checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/ppandiya/aws-multi-env.git']]])
-
+     jenkins.stage("Cleanup") {
+            mvn clean install
+     }
      jenkins.echo ${scm.GIT_BRANCH}
      jenkins.echo ${scm.GIT_URL}
      
